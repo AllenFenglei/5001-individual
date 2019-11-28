@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 
 import numpy as np
@@ -170,7 +170,7 @@ print(X_.shape)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.1, random_state=1)
 
-regr2 = RandomForestRegressor(max_depth=10, random_state=4, n_estimators=50, min_samples_split=3)
+regr2 = RandomForestRegressor(max_depth=10, random_state=4, n_estimators=50, min_samples_split=4)
 mse = cross_validation(regr2, X, y, False)
 print("RMSE: %0.2f (+/- %0.2f)" % (mse.mean(), mse.std() * 2))
 regr2.fit(X, y)
@@ -199,6 +199,6 @@ output2 = output2[['id', 'playtime_forever']]
 #output2.to_csv('Result_test.csv', index=False)
 
 for i in range(len(output['id'])):
-    if output['playtime_forever'][i] > 10:
+    if output['playtime_forever'][i] > 3:
         output['playtime_forever'][i] = output2['playtime_forever'][i]
 output.to_csv('Result2.csv', index=False)
